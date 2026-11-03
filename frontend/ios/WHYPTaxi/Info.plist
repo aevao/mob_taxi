@@ -39,7 +39,7 @@
     <key>CFBundleVersion</key>
     <string>1</string>
     <key>GMSApiKey</key>
-    <string>AIzaSyAvT1Y1xUVZ9PZ1GF9JOF3PGC9jZw-Y0wM</string>
+    <string>REPLACE_WITH_EXPO_PUBLIC_GOOGLE_MAPS_IOS_KEY</string>
     <key>LSMinimumSystemVersion</key>
     <string>12.0</string>
     <key>LSRequiresIPhoneOS</key>
