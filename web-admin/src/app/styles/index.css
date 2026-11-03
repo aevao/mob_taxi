@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Brand palette — mirrors BRAND_PALETTE in the mobile app (frontend/constants/theme.ts). */
+  --color-brand-50: #f4f4fe;
+  --color-brand-100: #eeeefe;
+  --color-brand-200: #d9dafc;
+  --color-brand-300: #b5b7f8;
+  --color-brand-400: #8a8cf5;
+  --color-brand-500: #6467f2;
+  --color-brand-600: #4f52db;
+  --color-brand-700: #3f42c0;
+  --color-brand-800: #34369a;
+  --color-brand-900: #2c2e7a;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  body {
+    @apply bg-zinc-50 text-zinc-900;
+  }
+}

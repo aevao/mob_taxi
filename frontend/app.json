@@ -1,0 +1,55 @@
+{
+  "expo": {
+    "name": "WHYP Taxi",
+    "slug": "whyp-taxi",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "scheme": "whyp-taxi",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#F4F6F8"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.whypinc.passenger"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#0A0A0A"
+      },
+      "package": "com.whypinc.passenger"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-asset",
+      "expo-font",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "WHYP needs your location to show pickup point and calculate fare."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "cameraPermission": "WHYP uses the camera to take your live profile photo and, for drivers, photos of your license and vehicle.",
+          "photosPermission": "WHYP uses your photos to upload vehicle registration and insurance documents.",
+          "microphonePermission": false
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

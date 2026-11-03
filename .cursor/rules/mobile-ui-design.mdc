@@ -1,0 +1,70 @@
+---
+description: UI/UX standards for the WHYP mobile app — modern ride-hailing patterns
+globs: frontend/**/*.tsx
+alwaysApply: true
+---
+
+# Mobile UI — WHYP Taxi
+
+Reference apps: **Uber**, **Lyft**, **Curb**. Never an admin dashboard.
+
+## Use the design system, don't re-invent it
+
+Import from `@/components/ui`. Never hand-roll a nav bar, card, list row, input, or button.
+
+| Need | Component |
+|---|---|
+| Screen header | `NavBar` (title, `onBack`, `right`) |
+| Round header action | `NavIconButton` |
+| Grouped container | `Card` + `Divider inset={52}` |
+| Any tappable row | `ListRow` |
+| Group label | `SectionHeader` |
+| Text input | `TextField` (has label, hint, error) |
+| Tier / mode switch | `SegmentedControl` |
+| Numeric picker | `Stepper` |
+| Status pill | `Badge` |
+| Actions | `Button` |
+
+Tokens live in `@/constants/theme`: `spacing`, `borderRadius`, `typography`, `elevation(colors, level)`.
+
+## Theming is mandatory
+
+- Style with `useThemedStyles(createStyles)` + `createStyles(colors: ThemeColors)`. Never `StyleSheet.create` at module scope with colors.
+- Never import the deprecated `colors` export — it is light-only and silently breaks dark mode.
+- Never hardcode a hex value in a screen or component.
+
+## Layout
+
+- **Every horizontal row**: `flexDirection: "row"`, `alignItems: "center"`, `justifyContent: "space-between"`, `width: "100%"`. Pressable rows also need `alignSelf: "stretch"` or they collapse into a vertical stack.
+- Text blocks in rows: `flex: 1`, `minWidth: 0`, plus `numberOfLines` so the trailing icon stays pinned right.
+- Fixed-size elements next to flexible ones need `flexShrink: 0`.
+- **One primary action per screen.** No logos or role switchers on flow screens.
+- Section titles are **sentence case** ("Saved places"). Never ALL CAPS, never `textTransform: "uppercase"`.
+- Screen padding is `spacing.md` horizontally; separate blocks with `gap: spacing.md`.
+
+## Map screens
+
+Map fills the top, a rounded bottom sheet (`borderRadius.xxl` top corners, `elevation lg`) holds the content with a drag handle. Header buttons float over the map via `NavIconButton`.
+
+## Address entry
+
+One trip card: pickup dot, connector line, dropoff square, fields divided by a hairline. No separate "PICKUP"/"DROPOFF" labels. Map picker is a `ListRow`, never orphan link text.
+
+## Visual
+
+- Primary CTA: brand fill, `size="lg"` (56px). Disabled = gray fill with muted text, never white-on-white.
+- Icons: Lucide at 20px, `strokeWidth 1.75`, muted gray in a 40px circle.
+- Accent color is `colors.brand`. Gold is reserved for star ratings only.
+- Prefer one elevation or one hairline border per surface, never both.
+
+## Interaction
+
+- Every `Pressable` gets a visible pressed state and `accessibilityRole` + `accessibilityLabel`.
+- Fire `haptics` from `@/lib/haptics`: `select()` on choice, `tap()` on navigation, `success()` on confirm, `warning()` on validation failure.
+
+## Before shipping UI
+
+- [ ] Any duplicate sections merged?
+- [ ] Readable in both light and dark?
+- [ ] Scannable in 3 seconds?
+- [ ] `npx tsc --noEmit` clean?
